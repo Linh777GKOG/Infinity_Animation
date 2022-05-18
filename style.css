@@ -10,8 +10,17 @@ section {
   align-items: center;
   min-height: 100vh;
   background: #042104;
+  animation: animateColor 8s linear infinite;
 }
 
+@keyframes animateColor {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
 section .container {
   display: flex;
 }
@@ -20,6 +29,7 @@ section .container .circle {
   position: relative;
   width: 150px;
   height: 150px;
+  margin: 0 -7.5px;
 }
 
 section .container .circle span {
@@ -36,7 +46,7 @@ section .container .circle span::before {
   content: "";
   position: absolute;
   right: 0;
-  top: cal(50% - 7.5%px);
+  top: calc(50% - 7.5px);
   width: 15px;
   height: 15px;
   background: #00ff0a;
@@ -44,4 +54,23 @@ section .container .circle span::before {
   box-shadow: 0 0 10px #00ff0a, 0 0 20px #00ff0a, 0 0 40px #00ff0a,
     0 0 60px #00ff0a, 0 0 80px #00ff0a, 0 0 100px #00ff0a;
   transform: scale(0.1);
+  animation: animate 4s linear infinite;
+  animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(1);
+  }
+  50%,
+  100% {
+    transform: scale(0.1);
+  }
+}
+
+section .container .circle:nth-child(2) {
+  transform: rotate(-180deg);
+}
+section .container .circle:nth-child(2) span::before {
+  animation-delay: calc(-0.1s * var(--i));
 }
